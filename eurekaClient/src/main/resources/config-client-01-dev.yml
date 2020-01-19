@@ -1,0 +1,26 @@
+#server:
+#  port: 10001
+
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/managerdb?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false
+    username: root
+    password: admin
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    max-idle: 10
+    max-wait: 10000
+    min-idle: 5
+    initial-size: 5
+  rabbitmq:
+    host: 10.56.39.68
+    port: 5672
+    username: guest
+    password: guest
+
+#测试数据
+data:
+ env: localhost-dev-edit
+ user:
+  username: fengzheng-dev
+  password: password-dev

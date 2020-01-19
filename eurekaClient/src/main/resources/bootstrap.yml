@@ -1,0 +1,43 @@
+#单节点eureka server配置
+#eureka.client.serviceUrl.defaultZone = http://localhost:12345/eureka/
+#多节点eureka server配置
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://server1:12345/eureka/,http://server2:12222/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    preferIpAddress: true
+
+spring:
+  profiles:
+    active: dev
+
+---
+spring:
+  profiles: dev
+  application:
+    name: config-client-01
+  cloud:
+     config:
+#       uri: http://localhost:3301
+       label: master
+       profile: dev
+       discovery:
+          enabled: true
+          service-id: config-server
+
+---
+spring:
+  profiles: prod
+  application:
+    name: config-client-01
+  cloud:
+     config:
+#       uri: http://localhost:3301
+       label: master
+       profile: prod
+       discovery:
+          enabled: true
+          service-id: config-server
